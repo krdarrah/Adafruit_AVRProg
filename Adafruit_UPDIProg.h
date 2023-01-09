@@ -208,7 +208,7 @@ SOFTWARE.
 #define AVR_FUSE_LOCK 0x128A
 
 #define AVR_PAGESIZE_MAX                                                       \
-  256 // it is probably 128 but I have not checked all possible chips
+  1024 // it is probably 128 but I have not checked all possible chips
 
 /*! Detailed info about chip */
 typedef struct {
@@ -226,12 +226,13 @@ typedef struct {
 #define AVR8X_MEGA_320 4
 #define AVR8X_MEGA_321 5
 #define AVR8X_MEGA_480 6
+#define AVR128 7
 
 /*! Device configuration struct */
 typedef struct {
   uint32_t flash_start;     ///< Flash mem offset start (e.g. 0x8000)
   uint32_t flash_size;      ///< Flash size in bytes
-  uint8_t flash_pagesize;   ///< Page size in bytes
+  uint16_t flash_pagesize;   ///< Page size in bytes
   uint16_t eeprom_size;     ///< EEPROM size in bytes
   uint16_t eeprom_pagesize; ///< EEPROM page in bytes
 } DeviceConfiguration;
@@ -262,5 +263,7 @@ typedef struct {
   DeviceDetails details;        ///< this is data read from device
   uint8_t fuses[AVR_NUM_FUSES]; ///< Fuse memory
 } UPDI;
+
+
 
 #endif

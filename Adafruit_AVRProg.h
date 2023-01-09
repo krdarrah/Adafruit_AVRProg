@@ -3,6 +3,7 @@
 
 #include <Arduino.h>
 #include <SPI.h>
+#include <SD.h>
 #ifdef __AVR__
 #include <avr/pgmspace.h>
 #endif
@@ -61,7 +62,7 @@ public:
 
   bool verifyFuses(const byte *fuses, const byte *fusemask);
 
-  bool writeImage(const byte *hextext, uint32_t pagesize, uint32_t chipsize);
+  bool writeImage(const char* binFilename, uint32_t pagesize, uint32_t chipsize);
   bool verifyImage(const byte *hextext);
 
   void setSPI(int8_t reset_pin, SPIClass *theSPI = &SPI);

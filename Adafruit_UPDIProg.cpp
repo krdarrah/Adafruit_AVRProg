@@ -29,127 +29,227 @@ SOFTWARE.
 
 #ifdef SUPPORT_UPDI
 
+
 DeviceIdentification g_updi_devices[] = {
     //	signature, short id, descriptive name, config
-    {0x9123, "t202", "ATtiny202", AVR8X_TINY_2X},
-    {0x9122, "t204", "ATtiny204", AVR8X_TINY_2X},
-    {0x9121, "t212", "ATtiny212", AVR8X_TINY_2X},
-    {0x9120, "t214", "ATtiny214", AVR8X_TINY_2X},
-    {0x9223, "t402", "ATtiny402", AVR8X_TINY_4X},
-    {0x9226, "t404", "ATtiny404", AVR8X_TINY_4X},
-    {0x9225, "t406", "ATtiny406", AVR8X_TINY_4X},
-    {0x9223, "t412", "ATtiny412", AVR8X_TINY_4X},
-    {0x9222, "t414", "ATtiny414", AVR8X_TINY_4X},
-    {0x9221, "t416", "ATtiny416", AVR8X_TINY_4X},
-    {0x9220, "t417", "ATtiny417", AVR8X_TINY_4X},
-    {0x9325, "t804", "ATtiny804", AVR8X_TINY_8X},
-    {0x9324, "t806", "ATtiny806", AVR8X_TINY_8X},
-    {0x9323, "t807", "ATtiny807", AVR8X_TINY_8X},
-    {0x9322, "t814", "ATtiny814", AVR8X_TINY_8X},
-    {0x9321, "t816", "ATtiny816", AVR8X_TINY_8X},
-    {0x9320, "t817", "ATtiny817", AVR8X_TINY_8X},
-    {0x9425, "t1604", "ATtiny1604", AVR8X_TINY_16X},
-    {0x9424, "t1606", "ATtiny1606", AVR8X_TINY_16X},
-    {0x9423, "t1607", "ATtiny1607", AVR8X_TINY_16X},
-    {0x9422, "t1614", "ATtiny1614", AVR8X_TINY_16X},
-    {0x9421, "t1616", "ATtiny1616", AVR8X_TINY_16X},
-    {0x9420, "t1617", "ATtiny1617", AVR8X_TINY_16X},
-    {0x9552, "m3208", "ATmega3208", AVR8X_MEGA_320},
-    {0x9553, "m3209", "ATmega3209", AVR8X_MEGA_320},
-    {0x9520, "t3214", "ATtiny3214", AVR8X_MEGA_321},
-    {0x9521, "t3216", "ATtiny3216", AVR8X_MEGA_321},
-    {0x9522, "t3217", "ATtiny3217", AVR8X_MEGA_321},
-    {0x9650, "m4808", "ATmega4808", AVR8X_MEGA_480},
-    {0x9651, "m4809", "ATmega4809", AVR8X_MEGA_480}};
+  {0x9123, "t202", "ATtiny202", AVR8X_TINY_2X},
+  {0x9122, "t204", "ATtiny204", AVR8X_TINY_2X},
+  {0x9121, "t212", "ATtiny212", AVR8X_TINY_2X},
+  {0x9120, "t214", "ATtiny214", AVR8X_TINY_2X},
+  {0x9223, "t402", "ATtiny402", AVR8X_TINY_4X},
+  {0x9226, "t404", "ATtiny404", AVR8X_TINY_4X},
+  {0x9225, "t406", "ATtiny406", AVR8X_TINY_4X},
+  {0x9223, "t412", "ATtiny412", AVR8X_TINY_4X},
+  {0x9222, "t414", "ATtiny414", AVR8X_TINY_4X},
+  {0x9221, "t416", "ATtiny416", AVR8X_TINY_4X},
+  {0x9220, "t417", "ATtiny417", AVR8X_TINY_4X},
+  {0x9325, "t804", "ATtiny804", AVR8X_TINY_8X},
+  {0x9324, "t806", "ATtiny806", AVR8X_TINY_8X},
+  {0x9323, "t807", "ATtiny807", AVR8X_TINY_8X},
+  {0x9322, "t814", "ATtiny814", AVR8X_TINY_8X},
+  {0x9321, "t816", "ATtiny816", AVR8X_TINY_8X},
+  {0x9320, "t817", "ATtiny817", AVR8X_TINY_8X},
+  {0x9425, "t1604", "ATtiny1604", AVR8X_TINY_16X},
+  {0x9424, "t1606", "ATtiny1606", AVR8X_TINY_16X},
+  {0x9423, "t1607", "ATtiny1607", AVR8X_TINY_16X},
+  {0x9422, "t1614", "ATtiny1614", AVR8X_TINY_16X},
+  {0x9421, "t1616", "ATtiny1616", AVR8X_TINY_16X},
+  {0x9420, "t1617", "ATtiny1617", AVR8X_TINY_16X},
+  {0x9552, "m3208", "ATmega3208", AVR8X_MEGA_320},
+  {0x9553, "m3209", "ATmega3209", AVR8X_MEGA_320},
+  {0x9520, "t3214", "ATtiny3214", AVR8X_MEGA_321},
+  {0x9521, "t3216", "ATtiny3216", AVR8X_MEGA_321},
+  {0x9522, "t3217", "ATtiny3217", AVR8X_MEGA_321},
+  {0x9650, "m4808", "ATmega4808", AVR8X_MEGA_480},
+  {0x9651, "m4809", "ATmega4809", AVR8X_MEGA_480},
+  {0x970C, "a128d48", "AVR128DB48", AVR128}//
+};
 
-DeviceConfiguration g_device_configs[] = {
+
+  // uint32_t flash_start;     ///< Flash mem offset start (e.g. 0x8000)
+  // uint32_t flash_size;      ///< Flash size in bytes
+  // uint8_t flash_pagesize;   ///< Page size in bytes
+  // uint16_t eeprom_size;     ///< EEPROM size in bytes
+  // uint16_t eeprom_pagesize; ///< EEPROM page in bytes
+
+  DeviceConfiguration g_device_configs[] = {
     // flash address, flash size, flash page size, eeprom size, eeprom page size
     {0x8000, 2 * 1024, 64, 64, 32},    {0x8000, 4 * 1024, 64, 128, 32},
     {0x8000, 8 * 1024, 64, 128, 32},   {0x8000, 16 * 1024, 64, 256, 32},
     {0x4000, 32 * 1024, 128, 256, 64}, {0x8000, 32 * 1024, 128, 256, 64},
-    {0x4000, 48 * 1024, 128, 256, 64}};
+    {0x4000, 48 * 1024, 128, 256, 64}, {0x8000, 128000, 512, 512, 64}};
 // TODO add support for larger chips (64, 128, and 256 KB)
 
-uint8_t _updi_flash_page_buffer[AVR_PAGESIZE_MAX];
+    uint8_t _updi_flash_page_buffer[AVR_PAGESIZE_MAX];
 
-void Adafruit_AVRProg::updi_serial_init() {
-  _updi_serial_retry_counter = 0;
-  _updi_serial_retry_count = 0;
+    void Adafruit_AVRProg::updi_serial_init() {
 
-  // start slow
-  uart->begin(min((uint32_t)_baudrate, (uint32_t)57600), SERIAL_8E2);
-  uart->setTimeout(10);
-  DEBUG_PHYSICAL("updi serial init set\n");
+      if(!_updi_serial_inited){
+  // start slow 
+        _updi_serial_retry_counter = 0;
+        _updi_serial_retry_count = 0;
 
-  _updi_serial_inited = true;
-}
+    //   uart->end();
+    //   gpio_matrix_out(16, SIG_GPIO_OUT_IDX, false, false);
+    //   gpio_matrix_out(17, SIG_GPIO_OUT_IDX, false, false);
 
-int Adafruit_AVRProg::updi_serial_read_wait(void) {
-  uint32_t timeout = millis() + 250;
-  int b = -1;
-  _updi_serial_retry_counter++;
-  _updi_serial_retry_count++;
+// pinMode(14, OUTPUT);
+// digitalWrite(14, HIGH);
+// delay(200);
+    // pinMode(17, INPUT);//rx
+    // pinMode(16, OUTPUT);//tx
+    // // //digitalWrite(16, LOW);
+    // // delay(1);
+    // digitalWrite(16, HIGH);
+    // delay(24);
+    // digitalWrite(16, LOW);
+    // delay(24);
+    // digitalWrite(16, HIGH);
+    // delay(24);
+    // digitalWrite(16, LOW);
+    // delay(24);
+    // digitalWrite(16, HIGH);
+    // delay(24);
+    //pinMode(16, INPUT);//rx
+
+    //uart->begin(57600, SERIAL_8E2);
+        // *********** DOUBLE BREAK RESET **********
+        //https://onlinedocs.microchip.com/pr/GUID-3B7669FB-593E-4130-8ADE-F747E101F8D0-en-US-21/index.html?GUID-ED0C5A98-4284-4651-BB6C-FF4CFF1F6C1C
+        updi_term();
+        //delay(12);
+        pinMode(16, OUTPUT);
+        pinMode(17, OUTPUT);
+        digitalWrite(16, HIGH);
+        digitalWrite(17, HIGH);
+        delay(5);
+  // first BREAK
+  //AVRVERBOSE("updi_serial Digital BREAK 1\n");
+        digitalWrite(16, LOW);
+        digitalWrite(17, LOW);
+        delay(10);//was 25
+        digitalWrite(16, HIGH);
+        digitalWrite(17, HIGH);
+        delay(5);
+ // AVRVERBOSE("updi_serial Digital BREAK 2\n");
+        digitalWrite(16, LOW);
+        digitalWrite(17, LOW);
+        delay(10);//was 25
+  // establish a known high state
+        digitalWrite(16, HIGH);
+        digitalWrite(17, HIGH);
+
+  //   delay(1);
+  // uart->begin(_baudrate, SERIAL_8E2);
+  //   size_t s = 0;
+  //   s = uart->setRxBufferSize(512+16);
+
+        uart->begin(230400, SERIAL_8E2);
+        //uart->begin(min((uint32_t)_baudrate, (uint32_t)57600), SERIAL_8E2);
+        size_t s = 0;
+        //s = uart->setRxBufferSize(512+16); // KLUDGE this should be based off of UPDI_MAX_REPEAT
+        uart->setRxBufferSize(1024);
+
+        //uart->setTimeout(10);
+
+  //uart->setTimeout(2);
+        //Serial.print("updi serial init set\n");
+        while(!uart)
+          ;
+ // Serial.printf("updi serial init set with buffer = %d\n", s);
+        _updi_serial_inited = true;
+      }
+       // updi_apply_reset();
+      
+    }
+
+    int Adafruit_AVRProg::updi_serial_read_wait(void) {
+  //uint32_t timeout = millis() + 200;
+      int b = -1;
+      _updi_serial_retry_counter++;
+      _updi_serial_retry_count++;
 
   // try to wait for data
-  while (millis() < timeout) {
-    if (uart->available()) {
-      b = uart->read();
-      break;
-    }
-  }
-  _updi_serial_retry_counter = 0;
-  return b;
-}
+  // while (millis() < timeout) {
+  //     yield();
+  //   if (uart->available()) {
+  //     b = uart->read();
+  //     break;
+  //   }
+  // }
+     // delayMicroseconds(25);
+      while (_updi_serial_retry_counter++) {
 
-bool Adafruit_AVRProg::updi_serial_send(uint8_t *data, uint16_t size) {
+        if ((b = uart->read()) >= 0)
+          break;
+        delayMicroseconds(50);
+        //delay(1);
+        _updi_serial_retry_count++;
+      }
+
+      _updi_serial_retry_counter = 0;
+      return b;
+    }
+
+    bool Adafruit_AVRProg::updi_serial_send(uint8_t *data, uint16_t size) {
   /*
     NOTE: since the TX and RX pins are tied together,
     everything we send gets echo'd and needs to be
     discarded QUICKLY.
   */
-  bool good_echo = true;
-  uint16_t count = 0;
-  int b;
+  //Serial.println("startig to tx");
+      bool good_echo = true;
+      uint16_t count = 0;
+      int b;
 
+//delay(100);
   // flush output and input
-  uart->flush();
-  while (uart->available()) {
-    uart->read();
-  }
+      uart->flush();
+  // while (uart->available()) {
+  //   uart->read();
+  // }
 
-  count = uart->write(data, size);
-  if (count != size) {
-    DEBUG_PHYSICAL("UPDISERIAL send count error %d != %d\n", count, size);
-    return false;
-  }
+      count = uart->write(data, size);
+      if (count != size) {
+        Serial.printf("UPDISERIAL send count error %d != %d\n", count, size);
+        return false;
+      }
+      //delay(2);
+//delayMicroseconds(20);
+      //yield();
 
-  yield();
+ // delay(1);
+//uart->read();
+      count = 0;
 
-  count = 0;
-  for (uint16_t i = 0; i < size; i++) {
+      for (uint16_t i = 0; i < size; i++) {
     b = updi_serial_read_wait(); // wait for data
     if (b != data[i]) {
       good_echo = false;
-      DEBUG_PHYSICAL("\tsend[%d] %02x != %02x\n", i, data[i], b);
+    //Serial.printf("\tsend[%d] %02x != %02x\n", i, data[i], b);
     } else {
-      DEBUG_PHYSICAL("\tsend[%d] %02x == %02x\n", i, data[i], b);
+    //Serial.printf("\tsend[%d] %02x == %02x\n", i, data[i], b);
     }
     count++;
   }
+  while (uart->available()) {
+    uart->read();
+  }
   if (count != size) {
-    DEBUG_PHYSICAL("UPDISERIAL echo count error %d != %d\n", count, size);
+    //Serial.printf("UPDISERIAL echo count error %d != %d\n", count, size);
     return false;
   }
   return good_echo; // was return true
 }
 
 bool Adafruit_AVRProg::updi_serial_send_receive(uint8_t *data, uint16_t size,
-                                                uint8_t *buff, uint32_t len) {
+  uint8_t *buff, uint32_t len) {
   /*
           NOTE: since the TX and RX pins are tied together,
           everything we send gets echo'd and needs to be
           discarded QUICKLY.
   */
+
+
   bool timeout = false;
   uint32_t count = 0;
   int b;
@@ -162,14 +262,14 @@ bool Adafruit_AVRProg::updi_serial_send_receive(uint8_t *data, uint16_t size,
       buff[count++] = b;
       if (b == -1)
         timeout = true;
-      DEBUG_PHYSICAL("\treceive %d of %d =  %02x\n", i + 1, len, b);
+      //Serial.printf("\treceive %d of %d =  %02x\n", i + 1, len, b);
     }
     if (count != len) {
-      DEBUG_PHYSICAL("UPDISERIAL receive count error %d != %d\n", count, len);
+      Serial.printf("UPDISERIAL receive count error %d != %d\n", count, len);
       return false;
     }
     if (timeout) {
-      DEBUG_PHYSICAL("UPDISERIAL timeout while reading data\n");
+      //Serial.printf("UPDISERIAL timeout while reading data\n");
       return false;
     }
     return true;
@@ -201,11 +301,11 @@ bool Adafruit_AVRProg::updiIsConnected(bool silent) {
 // Store a single byte value directly to a 16-bit address
 bool Adafruit_AVRProg::updi_st(uint32_t address, uint8_t value) {
   uint8_t buf[4] = {UPDI_PHY_SYNC, UPDI_STS | UPDI_ADDRESS_16 | UPDI_DATA_8,
-                    (uint8_t)(address & 0xFF),
-                    (uint8_t)((address >> 8) & 0xFF)};
+  (uint8_t)(address & 0xFF),
+  (uint8_t)((address >> 8) & 0xFF)};
   uint8_t recv = 0;
   AVRDEBUG("ST(%02X) %02X %02X %02X %02X\n", value, buf[0], buf[1], buf[2],
-           buf[3]);
+   buf[3]);
 
   if (!updi_serial_send_receive(buf, 4, &recv, 1)) {
     DEBUG_PHYSICAL("ST error sending address");
@@ -234,7 +334,7 @@ bool Adafruit_AVRProg::updi_st(uint32_t address, uint8_t value) {
 
 bool Adafruit_AVRProg::udpi_stcs(uint8_t address, uint8_t value) {
   uint8_t buf[3] = {UPDI_PHY_SYNC, (uint8_t)(UPDI_STCS | (address & 0x0F)),
-                    value};
+  value};
   AVRDEBUG("STCS(%02X) %02X %02X %02X\n", value, buf[0], buf[1], buf[2]);
 
   return updi_serial_send(buf, 3);
@@ -244,8 +344,8 @@ bool Adafruit_AVRProg::udpi_stcs(uint8_t address, uint8_t value) {
 uint8_t Adafruit_AVRProg::updi_ld(uint16_t address) {
 
   uint8_t buf[4] = {UPDI_PHY_SYNC, UPDI_LDS | UPDI_ADDRESS_16 | UPDI_DATA_8,
-                    (uint8_t)(address & 0xFF),
-                    (uint8_t)((address >> 8) & 0xFF)};
+  (uint8_t)(address & 0xFF),
+  (uint8_t)((address >> 8) & 0xFF)};
   uint8_t recv = 0;
   AVRDEBUG("LD %02X %02X %02X %02x\n", buf[0], buf[1], buf[2], buf[3]);
 
@@ -262,15 +362,15 @@ uint8_t Adafruit_AVRProg::updi_ldcs(uint8_t address) {
 
   uint8_t buf[2] = {UPDI_PHY_SYNC, (uint8_t)(UPDI_LDCS | (address & 0x0F))};
   uint8_t recv = 0;
-  AVRDEBUG("LDCS %02X %02X  ", buf[0], buf[1]);
+  //Serial.printf("LDCS %02X %02X  ", buf[0], buf[1]);
 
   if (!updi_serial_send_receive(buf, 2, &recv, 1)) {
-    DEBUG_PHYSICAL("updi_ldcs error\n");
+    //Serial.println("updi_ldcs error\n");
     return 0;
-  } else {
-    AVRDEBUG("%02X\n", recv);
-    return recv;
-  }
+  } 
+    //Serial.printf("%02X\n", recv);
+  return recv;
+  
 }
 
 // Loads a number of bytes from the pointer location with pointer post-increment
@@ -289,8 +389,8 @@ bool Adafruit_AVRProg::updi_ld_ptr_inc(uint8_t *buffer, uint16_t size) {
 // Set the pointer location
 bool Adafruit_AVRProg::updi_st_ptr(uint32_t address) {
   uint8_t buf[4] = {UPDI_PHY_SYNC, UPDI_ST | UPDI_PTR_ADDRESS | UPDI_DATA_16,
-                    (uint8_t)(address & 0xFF),
-                    (uint8_t)((address >> 8) & 0xFF)};
+  (uint8_t)(address & 0xFF),
+  (uint8_t)((address >> 8) & 0xFF)};
   uint8_t recv = 0;
   AVRDEBUG("STPTR %02X %02X %02X %02X\n", buf[0], buf[1], buf[2], buf[3]);
   // AVRDEBUG("st ptr address 0x%04X\n", address);
@@ -311,7 +411,7 @@ bool Adafruit_AVRProg::updi_st_ptr(uint32_t address) {
 // Store data to the pointer location with pointer post-increment
 bool Adafruit_AVRProg::updi_st_ptr_inc(uint8_t *data, uint32_t size) {
   uint8_t buf[3] = {UPDI_PHY_SYNC, UPDI_ST | UPDI_PTR_INC | UPDI_DATA_8,
-                    data[0]};
+  data[0]};
   uint8_t recv;
   AVRDEBUG("STPTRI(%d) %02X %02X %02X ", size, buf[0], buf[1], buf[2]);
 
@@ -368,8 +468,8 @@ void Adafruit_AVRProg::updi_set_repeat(uint16_t repeats) {
   // DEBUG_PHYSICAL("set repeat %d\n", repeats);
   repeats -= 1;
   uint8_t buf[4] = {UPDI_PHY_SYNC, UPDI_REPEAT | UPDI_REPEAT_WORD,
-                    (uint8_t)(repeats & 0xFF),
-                    (uint8_t)((repeats >> 8) & 0xFF)};
+  (uint8_t)(repeats & 0xFF),
+  (uint8_t)((repeats >> 8) & 0xFF)};
   AVRDEBUG("REPT %02X %02X %02X %02X\n", buf[0], buf[1], buf[2], buf[3]);
 
   updi_serial_send(buf, 4);
@@ -428,7 +528,7 @@ void Adafruit_AVRProg::updi_serial_force_break(void) {
     uart->read();
 
   DEBUG_PHYSICAL("updi_serial baud 110\n");
-  uart->begin(110);
+  uart->updateBaudRate(110);
   delay(50);
 
   DEBUG_PHYSICAL("updi_serial BREAK 1\n");
@@ -445,34 +545,39 @@ void Adafruit_AVRProg::updi_serial_force_break(void) {
     uart->read();
 
   DEBUG_PHYSICAL("updi_serial baud 115200\n");
-  uart->begin(115200);
+  uart->updateBaudRate(115200);
 }
 
 bool Adafruit_AVRProg::updi_init(bool force) {
   if (force && (_power >= 0)) {
-    pinMode(_power, OUTPUT);
-    digitalWrite(_power, _invertpower);
-    delay(10);
-    digitalWrite(_power, !_invertpower);
-    delay(10);
-  }
-  updi_serial_init();
-  updi_send_handshake();
-  delay(3);
+   pinMode(_power, OUTPUT);
+   digitalWrite(_power, _invertpower);
+   delay(100);
+   digitalWrite(_power, !_invertpower);
+   delay(200);
+    //Serial.println("Power Cycled");
+ }
 
-  udpi_stcs(UPDI_CS_CTRLB, 1 << UPDI_CTRLB_CCDETDIS_BIT);
-  udpi_stcs(UPDI_CS_CTRLA, 1 << UPDI_CTRLA_IBDLY_BIT);
-  if (_baudrate > 230000) {
-    udpi_stcs(UPDI_ASI_CTRLA, 0x1); // set 16mhz for higher baudrate!
-  }
-  uart->begin(_baudrate, SERIAL_8E2);
+ //updi_device_force_reset();
+ //updi_apply_reset();
+ updi_serial_init();
+ //updi_send_handshake();
 
-  return updi_check();
+ //delay(10);
+
+ udpi_stcs(UPDI_CS_CTRLB, 1 << UPDI_CTRLB_CCDETDIS_BIT);
+ udpi_stcs(UPDI_CS_CTRLA, 1 << UPDI_CTRLA_IBDLY_BIT);
+  // if (_baudrate > 230000) {
+  //   udpi_stcs(UPDI_ASI_CTRLA, 0x1); // set 16mhz for higher baudrate!
+  // }
+  //uart->begin(_baudrate, SERIAL_8E2);
+
+ return updi_check();
 }
 
 // run the updi process based on the 'command bits' provided
 bool Adafruit_AVRProg::updi_run_tasks(uint16_t tasks, uint8_t *data,
-                                      uint32_t address, uint32_t size) {
+  uint32_t address, uint32_t size) {
   long unsigned int start = millis();
   // int32_t datasize = 0;
   bool success = true;
@@ -489,14 +594,14 @@ bool Adafruit_AVRProg::updi_run_tasks(uint16_t tasks, uint8_t *data,
     for (uint8_t i = 0; i < AVR_NUM_FUSES; i++)
       saved_fuses[i] = g_updi.fuses[i];
   }
-  DEBUG_TASK("Checking for UPDI chip\n");
+  //Serial.println("Checking for UPDI chip\n");
 
   updi_init(true);
 
   do { // we use a do {} while (0); so we have easy branch control
 
     if (!updi_check()) {
-      DEBUG_TASK("UPDI not initialised\n");
+      Serial.println("UPDI not initialised\n");
 
       if (!updi_device_force_reset()) {
         DEBUG_TASK("double BREAK reset failed\n");
@@ -566,7 +671,7 @@ bool Adafruit_AVRProg::updi_run_tasks(uint16_t tasks, uint8_t *data,
 
     // do requested actions
     if (tasks & UPDI_TASK_GET_INFO) {
-      DEBUG("\nGETTING / GOT DEVICE INFO\n");
+      Serial.println("\nGETTING / GOT DEVICE INFO\n");
       // _updi_get_device_info(); // we dont actually need to do anything as the
       // info was previously fetched for all operations
     }
@@ -593,11 +698,11 @@ bool Adafruit_AVRProg::updi_run_tasks(uint16_t tasks, uint8_t *data,
       for (uint8_t i = 0; i < AVR_NUM_FUSES; i++) {
         if (saved_fuses[i] != g_updi.fuses[i]) {
           DEBUG_FUSES("Write fuse %d: 0x%02X -> 0x%02X\n", i, g_updi.fuses[i],
-                      saved_fuses[i]);
+            saved_fuses[i]);
           updi_write_fuse(i, saved_fuses[i]);
         } else {
           DEBUG_FUSES("Skip fuse %d: 0x%02X -> 0x%02X\n", i, g_updi.fuses[i],
-                      saved_fuses[i]);
+            saved_fuses[i]);
         }
       }
     }
@@ -636,38 +741,38 @@ bool Adafruit_AVRProg::updi_run_tasks(uint16_t tasks, uint8_t *data,
         }
         if (!page_blank) {
           if (!updi_write_nvm(address, data, flashpagesize,
-                              UPDI_NVMCTRL_CTRLA_updi_write_PAGE, true,
-                              false)) {
+            UPDI_NVMCTRL_CTRLA_updi_write_PAGE, true,
+            false)) {
             // Serial.println("Writing flash failed");
             success = false;
-            break;
-          } else {
+          break;
+        } else {
             // Serial.println("Flash written\n");
-          }
         }
-        remainingsize -= flashpagesize;
-        address += flashpagesize;
-        data += flashpagesize;
       }
+      remainingsize -= flashpagesize;
+      address += flashpagesize;
+      data += flashpagesize;
     }
+  }
 
     // save flash into updi array
-    if (tasks & UPDI_TASK_READ_FLASH) {
-      DEBUG("Reading %d bytes starting at %04X\n", size, address);
-      if (data == NULL) {
-        Serial.println(F("Data pointer null"));
-        success = false;
-        break;
-      }
-
-      if (!updi_read_page(address, size, data)) {
-        Serial.println("Reading flash failed");
-        success = false;
-        break;
-      } else {
-        // Serial.println("Reading flash OK");
-      }
+  if (tasks & UPDI_TASK_READ_FLASH) {
+    DEBUG("Reading %d bytes starting at %04X\n", size, address);
+    if (data == NULL) {
+      Serial.println(F("Data pointer null"));
+      success = false;
+      break;
     }
+
+    if (!updi_read_page(address, size, data)) {
+      Serial.println("Reading flash failed");
+      success = false;
+      break;
+    } else {
+        // Serial.println("Reading flash OK");
+    }
+  }
 
     /*
             //Write eeprom from hex file
@@ -710,19 +815,19 @@ bool Adafruit_AVRProg::updi_run_tasks(uint16_t tasks, uint8_t *data,
                     }
             }
     */
-  } while (0);
+} while (0);
 
   // leave progmode
-  updi_leave_progmode();
+updi_leave_progmode();
 
   // Tidy up
-  updi_term();
+updi_term(); 
 
-  DEBUG_TASK("TASK RUN TIME: %ld ms\n", millis() - start);
-  DEBUG_TASK("UPDI Serial retry counter: %d\n", _updi_serial_retry_count);
+DEBUG_TASK("TASK RUN TIME: %ld ms\n", millis() - start);
+DEBUG_TASK("UPDI Serial retry counter: %d\n", _updi_serial_retry_count);
 
-  DEBUG_TASK("UPDI tasks finished\n");
-  return success;
+DEBUG_TASK("UPDI tasks finished\n");
+return success;
 }
 
 void Adafruit_AVRProg::updi_term() {
@@ -734,32 +839,33 @@ void Adafruit_AVRProg::updi_serial_term() {
   DEBUG_PHYSICAL("updi serial term begin\n");
   uart->flush();
 
-  delay(10);
+  //delay(10);
   DEBUG_PHYSICAL("updi serial term flushed\n");
-  delay(10);
+  //delay(10);
   uart->end();
   DEBUG_PHYSICAL("updi serial term closed\n");
   _updi_serial_inited = false;
 }
 
 void Adafruit_AVRProg::updi_apply_reset() {
-  DEBUG_PHYSICAL("Applying reset\n");
-  udpi_stcs(UPDI_ASI_RESET_REQ, UPDI_RESET_REQ_VALUE);
+ // Serial.print("Applying reset\n");
 
+  udpi_stcs(UPDI_ASI_RESET_REQ, UPDI_RESET_REQ_VALUE);
+ // delay(50);
   if (!(updi_ldcs(UPDI_ASI_SYS_STATUS) & (1 << UPDI_ASI_SYS_STATUS_RSTSYS))) {
     DEBUG_PHYSICAL("error applying reset\n");
     return;
   }
 
   delay(5);
-  DEBUG_PHYSICAL("Releasing reset\n");
+ // Serial.print("Releasing reset\n");
   udpi_stcs(UPDI_ASI_RESET_REQ, 0x00);
   uint8_t retries = (255 - 10); // at most 10 retries
 
   while (retries++) {
     uint8_t b;
     if (!((b = updi_ldcs(UPDI_ASI_SYS_STATUS)) &
-          (1 << UPDI_ASI_SYS_STATUS_RSTSYS)))
+      (1 << UPDI_ASI_SYS_STATUS_RSTSYS)))
       break;
     // DEBUG_VERBOSE("Wait for release %03d ( %02X != %02X)\n", retries, b, (1
     // << UPDI_ASI_SYS_STATUS_RSTSYS));
@@ -768,6 +874,7 @@ void Adafruit_AVRProg::updi_apply_reset() {
     // if our retry counter rolled over, then we failed to reset
     DEBUG_PHYSICAL("Error releasing reset\n");
   }
+
 }
 
 // Waits for the device to be unlocked. All devices boot up as locked until
@@ -777,16 +884,16 @@ bool Adafruit_AVRProg::updi_wait_unlocked(uint32_t timeout) {
 
   while (millis() < end) {
     if (!(updi_ldcs(UPDI_ASI_SYS_STATUS) &
-          (1 << UPDI_ASI_SYS_STATUS_LOCKSTATUS))) {
+      (1 << UPDI_ASI_SYS_STATUS_LOCKSTATUS))) {
       g_updi.unlocked = true;
-      return true;
-    }
+    return true;
   }
+}
 
-  DEBUG_VERBOSE("TIMEOUT WAITING FOR DEVICE TO UNLOCK\n");
-  g_updi.unlocked = false;
+DEBUG_VERBOSE("TIMEOUT WAITING FOR DEVICE TO UNLOCK\n");
+g_updi.unlocked = false;
 
-  return false;
+return false;
 }
 
 bool Adafruit_AVRProg::updi_is_prog_mode() {
@@ -841,7 +948,7 @@ void Adafruit_AVRProg::updi_leave_progmode() {
   DEBUG_VERBOSE("leaving progmode...\n");
   updi_apply_reset();
   udpi_stcs(UPDI_CS_CTRLB,
-            (1 << UPDI_CTRLB_UPDIDIS_BIT) | (1 << UPDI_CTRLB_CCDETDIS_BIT));
+    (1 << UPDI_CTRLB_UPDIDIS_BIT) | (1 << UPDI_CTRLB_CCDETDIS_BIT));
 
   return;
 }
@@ -859,6 +966,7 @@ bool Adafruit_AVRProg::UPDIunlock(void) {
 
   if (!updi_check()) {
     DEBUG_TASK("UPDI not initialised\n");
+
 
     if (!updi_device_force_reset()) {
       DEBUG_TASK("double BREAK reset failed\n");
@@ -907,7 +1015,7 @@ bool Adafruit_AVRProg::UPDIunlock(void) {
 
 // Unlock and erase
 bool Adafruit_AVRProg::updi_unlock_device() {
-  DEBUG_VERBOSE("UNLOCKING AND ERASING\n");
+  Serial.println("UNLOCKING AND ERASING\n");
 
   // enter key
   updi_write_key(UPDI_KEY_64, (uint8_t *)UPDI_KEY_CHIPERASE);
@@ -1007,21 +1115,21 @@ bool Adafruit_AVRProg::updi_erase_chip() {
   // Wait until NVM CTRL is ready to erase
   if (!updi_wait_flash_ready()) {
     DEBUG_VERBOSE("in updi_erase_chip() error: timeout waiting for flash ready "
-                  "before erase\n");
+      "before erase\n");
     return false;
   }
 
   // Erase
   if (!updi_execute_nvm_command(UPDI_NVMCTRL_CTRLA_updi_erase_chip)) {
     DEBUG_VERBOSE(
-        "in updi_erase_chip() error: execute_nvm_command() failed()\n");
+      "in updi_erase_chip() error: execute_nvm_command() failed()\n");
     return false;
   }
 
   // Wait to finish
   if (!updi_wait_flash_ready()) {
     DEBUG_VERBOSE("in updi_erase_chip() error: timeout waiting for flash ready "
-                  "after erase\n");
+      "after erase\n");
     return false;
   }
 
@@ -1086,14 +1194,14 @@ bool Adafruit_AVRProg::updi_write_fuse(uint8_t fuse, uint8_t value) {
 }
 
 bool Adafruit_AVRProg::updi_read_page(uint16_t address, uint16_t bufsize,
-                                      uint8_t *bufdata) {
+  uint8_t *bufdata) {
   if (!updi_is_prog_mode()) {
     DEBUG_VERBOSE("dump_flash() error: not in prog mode\n");
     return false;
   }
   if (bufsize > AVR_PAGESIZE_MAX) {
     Serial.printf("Chip buffer %d bytes exceeds %s byte maximum\n", bufsize,
-                  AVR_PAGESIZE_MAX);
+      AVR_PAGESIZE_MAX);
     return false;
   }
   // address = address - (address % pagesize); // round down to a page address
@@ -1128,7 +1236,7 @@ bool Adafruit_AVRProg::updi_read_page(uint16_t address, uint16_t bufsize,
 }
 
 bool Adafruit_AVRProg::updi_write_page(uint16_t address, uint16_t pagesize,
-                                       uint8_t *pagedata) {
+ uint8_t *pagedata) {
   // Serial.println("Writing a page");
   uint32_t t = millis();
 
@@ -1140,7 +1248,7 @@ bool Adafruit_AVRProg::updi_write_page(uint16_t address, uint16_t pagesize,
   // Serial.println(F("Is in prog mode"));
   if (pagesize > AVR_PAGESIZE_MAX) {
     Serial.printf("Chip pagesize %d bytes exceeds %s byte maximum\n", pagesize,
-                  AVR_PAGESIZE_MAX);
+      AVR_PAGESIZE_MAX);
     return false;
   }
   address = address - (address % pagesize); // round down to a page address
@@ -1151,14 +1259,14 @@ bool Adafruit_AVRProg::updi_write_page(uint16_t address, uint16_t pagesize,
   Serial.printf("before write: %d millis\n", millis() - t);
   t = millis();
   if (!updi_write_nvm(address, pagedata, pagesize,
-                      UPDI_NVMCTRL_CTRLA_updi_write_PAGE, true)) {
+    UPDI_NVMCTRL_CTRLA_updi_write_PAGE, true)) {
     Serial.printf(" Failed\n");
-    return false;
-  }
-  Serial.printf("updi_write_nvm: %d millis\n", millis() - t);
+  return false;
+}
+Serial.printf("updi_write_nvm: %d millis\n", millis() - t);
 
   // Serial.printf("Finished\n");
-  return true;
+return true;
 }
 
 // Write a key
@@ -1181,7 +1289,7 @@ void Adafruit_AVRProg::updi_write_key(uint8_t size, uint8_t *key) {
 }
 
 bool Adafruit_AVRProg::updi_chip_data_init_info(uint16_t sig, char *shortname,
-                                                bool format) {
+  bool format) {
   // one of (dev, sig, name) must be valid
 
   // optionally initialize everything to zeros
@@ -1202,7 +1310,7 @@ bool Adafruit_AVRProg::updi_chip_data_init_info(uint16_t sig, char *shortname,
 
 // provide lookup using signature or shortname
 DeviceIdentification *Adafruit_AVRProg::updi_chip_lookup(uint16_t sig,
-                                                         char *name) {
+ char *name) {
   uint8_t max = sizeof(g_updi_devices) / sizeof(DeviceIdentification);
 
   // search for the correct device identification using any one of: list index,
@@ -1235,7 +1343,7 @@ DeviceIdentification *Adafruit_AVRProg::updi_chip_lookup(uint16_t sig,
 
 // Reads a number of bytes of data from UPDI
 bool Adafruit_AVRProg::updi_read_data(uint32_t address, uint8_t *buf,
-                                      uint32_t size) {
+  uint32_t size) {
 
   // Range updi_check
   if (size > UPDI_MAX_REPEAT_SIZE + 1) {
@@ -1260,7 +1368,7 @@ bool Adafruit_AVRProg::updi_read_data(uint32_t address, uint8_t *buf,
 
 // Writes a number of bytes to memory
 bool Adafruit_AVRProg::updi_write_data(uint32_t address, uint8_t *data,
-                                       uint32_t len) {
+ uint32_t len) {
   if (len == 1) {
     if (!updi_st(address, data[0])) {
       DEBUG_VERBOSE("in _updi_write_data() error: st ret false\n");
@@ -1292,7 +1400,7 @@ bool Adafruit_AVRProg::updi_write_data(uint32_t address, uint8_t *data,
     updi_set_repeat(len);
     if (!updi_st_ptr_inc(data, len)) {
       DEBUG_VERBOSE(
-          "in _updi_write_data() error: couldnt st_ptr_inc() error\n");
+        "in _updi_write_data() error: couldnt st_ptr_inc() error\n");
       return false;
     }
   }
@@ -1302,7 +1410,7 @@ bool Adafruit_AVRProg::updi_write_data(uint32_t address, uint8_t *data,
 
 // Writes a number of words to memory
 bool Adafruit_AVRProg::updi_write_data_words(uint32_t address, uint8_t *data,
-                                             uint32_t numwords) {
+ uint32_t numwords) {
   if (numwords == 1) {
     return updi_write_data(address, data, 2);
   } else {
@@ -1347,22 +1455,22 @@ bool Adafruit_AVRProg::updi_wait_flash_ready() {
     }
 
     if (!(status & ((1 << UPDI_NVM_STATUS_EEPROM_BUSY) |
-                    (1 << UPDI_NVM_STATUS_FLASH_BUSY)))) {
+      (1 << UPDI_NVM_STATUS_FLASH_BUSY)))) {
       return true;
-    }
   }
+}
 
-  DEBUG_VERBOSE("in wait_flash_ready() error: wait flash ready timed out\n");
-  return false;
+DEBUG_VERBOSE("in wait_flash_ready() error: wait flash ready timed out\n");
+return false;
 }
 
 // Writes a page of data to NVM. By default the PAGE_WRITE command is used,
 // which requires that the page is already erased. By default word access is
 // used (flash)
 bool Adafruit_AVRProg::updi_write_nvm(uint32_t address, uint8_t *data,
-                                      uint32_t len, uint8_t command,
-                                      bool use_word_acess, bool block_on_flash,
-                                      bool verify) {
+  uint32_t len, uint8_t command,
+  bool use_word_acess, bool block_on_flash,
+  bool verify) {
   // uint32_t t = millis();
 
   // wait for NVM controller to be ready
@@ -1383,7 +1491,7 @@ bool Adafruit_AVRProg::updi_write_nvm(uint32_t address, uint8_t *data,
   // wait for NVM controller to be ready
   if (!updi_wait_flash_ready()) {
     DEBUG_VERBOSE("in updi_write_nvm() error: cant wait flash ready after page "
-                  "buffer clear\n");
+      "buffer clear\n");
     return false;
   }
 
@@ -1394,7 +1502,7 @@ bool Adafruit_AVRProg::updi_write_nvm(uint32_t address, uint8_t *data,
   if (use_word_acess) {
     if (!updi_write_data_words(address, data, len >> 1)) {
       DEBUG_VERBOSE(
-          "in updi_write_nvm() error: _updi_write_data_words() error\n");
+        "in updi_write_nvm() error: _updi_write_data_words() error\n");
       return false;
     }
   } else {
@@ -1409,7 +1517,7 @@ bool Adafruit_AVRProg::updi_write_nvm(uint32_t address, uint8_t *data,
   // Write the page to NVM, maybe erase first
   if (!updi_execute_nvm_command(command)) {
     DEBUG_VERBOSE("in updi_write_nvm() error: execute_nvm_command() error "
-                  "committing page\n");
+      "committing page\n");
     return false;
   }
 
@@ -1419,7 +1527,7 @@ bool Adafruit_AVRProg::updi_write_nvm(uint32_t address, uint8_t *data,
     // wait for NVM controller to be ready
     if (!updi_wait_flash_ready()) {
       DEBUG_VERBOSE("in updi_write_nvm() error: cant wait flash ready after "
-                    "commit page\n");
+        "commit page\n");
       return false;
     }
 
